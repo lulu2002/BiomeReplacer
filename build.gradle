@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+def defaultPath = "C:\\Users\\LU__LU\\Desktop\\java\\Librarys\\PluginDefault";
+apply from: "$defaultPath/plugin.gradle"
+apply from: "$defaultPath/proguard.gradle"
+
+group = 'me.lulu'
+version = '1.0.1'
+
+pluginName = "BiomeReplacer"
+mainPackage = "me.lulu.biomereplacer"
+mainClass = "BiomeReplacer"
+serverFolder = "C:\\Users\\LU__LU\\Desktop\\Servers\\Other Plugin Test Server"
+author = "LU__LU"
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'me.lulu:DatouNms:SNAPSHOT'
+}

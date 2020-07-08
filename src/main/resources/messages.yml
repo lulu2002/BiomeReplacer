@@ -1,0 +1,3 @@
+Biome_Replaced: '&7Successfully replace &a{biome} &7to &a{changed}&7.'
+Biome_Not_Exist: '&cBiome &4{biome} does not exist.'
+Can_Not_Replace_Biome: '&cError while replacing &4{biome} &cto &4{changed}&c.'
