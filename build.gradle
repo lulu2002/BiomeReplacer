@@ -1,14 +1,13 @@
 plugins {
-    id 'java'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-def defaultPath = "C:\\Users\\LU__LU\\Desktop\\java\\Librarys\\PluginDefault";
-apply from: "$defaultPath/plugin.gradle"
-apply from: "$defaultPath/proguard.gradle"
+def defaultPath = "/home/jerry/Program/Minecraft Plugins/Librarys/PluginDefault";
+apply from: "${defaultPath}/plugin.gradle"
+apply from: "${defaultPath}/proguard.gradle"
 
 group = 'me.lulu'
-version = '1.0.1'
+version = '1.1.0'
 
 pluginName = "BiomeReplacer"
 mainPackage = "me.lulu.biomereplacer"
@@ -23,4 +22,12 @@ repositories {
 
 dependencies {
     implementation 'me.lulu:DatouNms:SNAPSHOT'
+}
+
+relocate {
+    afterEvaluate {
+        doFirst {
+            shadowJar.relocate 'me.lulu.datounms.model.BiomeData', "${project.mainPackage}.api.BiomeData"
+        }
+    }
 }

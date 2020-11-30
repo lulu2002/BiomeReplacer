@@ -3,4 +3,5 @@ main: ${mainPackage}.${mainClass}
 version: ${version}
 author: ${author}
 api-version: 1.13
+
 load: STARTUP

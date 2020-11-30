@@ -21,7 +21,7 @@ public class BiomeReplacer extends SimplePlugin {
 
     @Override
     protected void onPluginStart() {
-
+        
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BiomeReplacer extends SimplePlugin {
             DaTouNMS.setup();
             Settings.swapBiomes();
         } catch (UnSupportedNmsException e) {
-            System.out.println("&cUnSupported NMS Version! (only for 1.8 ~ 1.16)");
+            System.out.println("&cUnSupported NMS Version! (only for 1.8 ~ 1.16.2)");
             e.printStackTrace();
         }
     }

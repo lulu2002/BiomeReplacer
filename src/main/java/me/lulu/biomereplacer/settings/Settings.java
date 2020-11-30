@@ -3,6 +3,7 @@ package me.lulu.biomereplacer.settings;
 import me.lulu.datounms.DaTouNMS;
 import me.lulu.datounms.model.BiomeData;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.settings.SimpleSettings;
@@ -34,7 +35,7 @@ public class Settings extends SimpleSettings {
         }
 
         private static void loadSwaps() {
-            final YamlConfiguration config = getConfig();
+            final FileConfiguration config = getConfig();
             final ConfigurationSection section = config.getConfigurationSection("BiomeChanger");
 
             for (String biomeName : section.getKeys(false)) {
