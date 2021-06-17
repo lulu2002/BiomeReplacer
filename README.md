@@ -44,7 +44,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2021 [LU__LU](https://github.com/lulu2002).<br />
-This project is [GPL3](https://opensource.org/licenses/MIT) licensed.
+This project is [GPL3](https://github.com/lulu2002/BiomeReplacer/blob/master/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
