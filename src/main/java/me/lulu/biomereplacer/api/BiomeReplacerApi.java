@@ -2,7 +2,7 @@ package me.lulu.biomereplacer.api;
 
 import lombok.RequiredArgsConstructor;
 import me.lulu.datounms.DaTouNMS;
-import me.lulu.datounms.model.BiomeData;
+import me.lulu.datounms.model.biome.BiomeData;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @RequiredArgsConstructor

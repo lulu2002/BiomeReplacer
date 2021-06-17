@@ -91,11 +91,7 @@ BiomeChanger:
 #   MUTATED_MESA_CLEAR_ROCK
 #   BAMBOO_JUNGLE
 #   BAMBOO_JUNGLE_HILLS
-#   SOUL_SAND_VALLEY
+#   SOUL_SAND_VALLEYdf
 #   CRIMSON_FOREST
 #   WARPED_FOREST
 #   BASALT_DELTAS
-
-#Do not change this
-Version: 1
-Command_Aliases: [biomereplacer,br]

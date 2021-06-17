@@ -1,86 +1,52 @@
 package me.lulu.biomereplacer.settings;
 
-import me.lulu.datounms.DaTouNMS;
-import me.lulu.datounms.model.BiomeData;
+import me.lulu.datounms.model.biome.BiomeData;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.mineacademy.fo.Common;
-import org.mineacademy.fo.settings.SimpleSettings;
-import org.mineacademy.fo.settings.YamlConfigLoader;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class Settings extends SimpleSettings {
+public class Settings extends ConfigFile {
+    public Map<BiomeData, List<BiomeData>> swaps;
 
-    @Override
-    protected void preLoad() {
-        super.preLoad();
-        YamlConfigLoader.load(this.getClass());
+    public Settings(JavaPlugin plugin) {
+        super(plugin, "settings.yml");
     }
 
     @Override
-    protected int getConfigVersion() {
-        return 1;
+    protected void loadValues() {
+        loadSwaps();
     }
 
-    public static class BiomeChanger {
-        public static final Map<BiomeData, List<BiomeData>> SWAPS = new HashMap<>();
+    @Override
+    protected void saveValues() {
 
-        private static void init() {
-            loadSwaps();
-        }
+    }
 
-        private static void loadSwaps() {
-            final FileConfiguration config = getConfig();
-            final ConfigurationSection section = config.getConfigurationSection("BiomeChanger");
+    private void loadSwaps() {
+        swaps = new HashMap<>();
+        ConfigurationSection section = getConfigurationSection("BiomeChanger");
 
-            for (String biomeName : section.getKeys(false)) {
-                BiomeData swapTo = BiomeData.getFromString(biomeName);
+        for (String biomeName : section.getKeys(false)) {
+            BiomeData swapTo = BiomeData.getFromString(biomeName);
 
-                String swapsPath = section.getCurrentPath() + "." + biomeName;
-                List<BiomeData> toSwaps = getList(swapsPath, BiomeData.class);
+            String swapsPath = section.getCurrentPath() + "." + biomeName;
+            List<BiomeData> toSwaps = getStringList(swapsPath).stream()
+                    .map(BiomeData::getFromString)
+                    .collect(Collectors.toList());
 
-                if (toSwaps.contains(BiomeData.ALL)) {
-                    SWAPS.clear();
-                    SWAPS.put(swapTo, Arrays.asList(BiomeData.values()));
-                    return;
-                }
-
-                SWAPS.put(swapTo, toSwaps);
+            if (toSwaps.contains(BiomeData.ALL)) {
+                swaps.clear();
+                swaps.put(swapTo, Arrays.asList(BiomeData.values()));
+                return;
             }
+
+            swaps.put(swapTo, toSwaps);
         }
     }
 
-    public static void swapBiomes() {
-        Map<BiomeData, List<BiomeData>> swaps = BiomeChanger.SWAPS;
-
-        swaps.forEach((swapToWhat, biomesToSwap) -> {
-            for (BiomeData data : biomesToSwap) {
-                swap(data, swapToWhat);
-            }
-        });
-    }
-
-    private static void swap(BiomeData from, BiomeData to) {
-        if (from == BiomeData.ALL)
-            return;
-
-        try {
-            DaTouNMS.getBiomeHandler().swap(from, to);
-            Common.log(Messages.BIOME_REPLACED
-                    .replace("{biome}", from.name())
-                    .replace("{changed}", to.name()));
-        } catch (IllegalAccessException | NoSuchFieldException |
-                IndexOutOfBoundsException | NullPointerException e) {
-            Common.log(Messages.BIOME_NOT_EXIST.replace("{biome}", from.name()));
-        } catch (Exception e) {
-            Common.log(Messages.CAN_NOT_REPLACE_BIOME
-                    .replace("{biome}", from.name())
-                    .replace("{changed}", to.name() + " -> "));
-        }
-    }
 }

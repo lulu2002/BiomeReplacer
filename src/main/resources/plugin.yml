@@ -1,7 +1,10 @@
-name: ${pluginName}
-main: ${mainPackage}.${mainClass}
-version: ${version}
-author: ${author}
+name: BiomeReplacer
+main: me.lulu.biomereplacer.BiomeReplacer
+version: 1.2.0
+author: LU__LU
 api-version: 1.13
 
 load: STARTUP
+
+commands:
+  biomereplacer:

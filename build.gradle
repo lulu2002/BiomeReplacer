@@ -1,33 +1,37 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'java'
 }
 
-def defaultPath = "/home/jerry/Program/Minecraft Plugins/Librarys/PluginDefault";
-apply from: "${defaultPath}/plugin.gradle"
-apply from: "${defaultPath}/proguard.gradle"
-
 group = 'me.lulu'
-version = '1.1.0'
+version = '1.2.0'
 
-pluginName = "BiomeReplacer"
-mainPackage = "me.lulu.biomereplacer"
-mainClass = "BiomeReplacer"
-serverFolder = "C:\\Users\\LU__LU\\Desktop\\Servers\\Other Plugin Test Server"
-author = "LU__LU"
-
-
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(16)
+    }
+}
 repositories {
     mavenCentral()
+    mavenLocal()
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+    flatDir { dir("./libs") }
 }
 
 dependencies {
-    implementation 'me.lulu:DatouNms:SNAPSHOT'
+    implementation 'me.lulu:DatouNms:1.0.0'
+
+    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
-relocate {
-    afterEvaluate {
-        doFirst {
-            shadowJar.relocate 'me.lulu.datounms.model.BiomeData', "${project.mainPackage}.api.BiomeData"
-        }
-    }
+tasks.withType(JavaCompile).configureEach {
+    options.forkOptions.jvmArgs.addAll(['--add-opens', 'jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED'])
+}
+
+shadowJar {
+    relocate("me.lulu.datounms", "me.lulu.biomereplacer.nms")
 }
