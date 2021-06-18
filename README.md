@@ -37,7 +37,7 @@ MoonBase.... I mean end city in overworld...oops
 
 ## 🤝 Contributing
 
-**Requirements: **
+**Requirements:**
 - **JDK 16**
 - Git
 
