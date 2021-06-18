@@ -37,6 +37,20 @@ MoonBase.... I mean end city in overworld...oops
 
 ## 🤝 Contributing
 
+**Requirements: **
+- **JDK 16**
+- Git
+
+**Compiling from source**
+```
+git clone https://github.com/lulu2002/BiomeReplacer.git
+cd BiomeReplacer/
+./gradlew build
+```
+
+**!!IMPORTANT!!** </br>
+**This project only includes codes that handle commands and configs, if you want to look at the behavior about biome replacing, please check out my [DatouNms](https://github.com/lulu2002/DatouNms) project!**
+
 For contributions, Feel free to check [issues page](https://github.com/lulu2002/BiomeReplacer/issues). 
 
 ## Show your support
