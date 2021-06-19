@@ -1,16 +1,15 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
     id 'java'
 }
 
 group = 'me.lulu'
 version = '1.2.0'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(16)
-    }
+compileJava {
+    options.release = 8
 }
+
 repositories {
     mavenCentral()
     mavenLocal()
@@ -21,15 +20,11 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.lulu2002:DatouNms:master-SNAPSHOT'
+    implementation 'me.lulu:DatouNms:1.1.0'
 
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.forkOptions.jvmArgs.addAll(['--add-opens', 'jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED'])
 }
 
 shadowJar {
