@@ -8,6 +8,8 @@
 
 > A cross version spigot plugin that prevents those biomes that are unfamilier to you from generating, and replace it to another one!
 
+![2021-06-17_17 57 02](https://user-images.githubusercontent.com/41278925/122516438-5d32e400-d041-11eb-9bfb-4a05d738651c.jpg)
+
 ## About This Plugin
 This plugin is used to prevent biomes like ocean、forest、jungle from generating for **UHC** that hosted in my server, 
 since this project is getting larger and larger because of minecraft updates, I found that it could be releases as an open source project, 
@@ -34,6 +36,20 @@ MoonBase.... I mean end city in overworld...oops
 * Github: [@lulu2002](https://github.com/lulu2002)
 
 ## 🤝 Contributing
+
+**Requirements:**
+- **JDK 16**
+- Git
+
+**Compiling from source**
+```
+git clone https://github.com/lulu2002/BiomeReplacer.git
+cd BiomeReplacer/
+./gradlew build
+```
+
+**!!IMPORTANT!!** </br>
+**This project only includes codes that handle commands and configs, if you want to look at the behavior about biome replacing, please check out my [DatouNms](https://github.com/lulu2002/DatouNms) project!**
 
 For contributions, Feel free to check [issues page](https://github.com/lulu2002/BiomeReplacer/issues). 
 
